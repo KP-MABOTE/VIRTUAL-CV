@@ -84,11 +84,16 @@
     background:radial-gradient(120% 140% at 20% 0%, var(--wine-soft) 0%, var(--wine) 45%, var(--wine-dark) 100%);
     color:var(--cream);padding:96px 0 0;overflow:hidden;
   }
+  #hero3d{
+    position:absolute;top:0;right:0;width:60%;height:100%;
+    opacity:0.5;pointer-events:none;z-index:0;
+  }
   .hero-inner{
+    position:relative;z-index:1;
     max-width:var(--max);margin:0 auto;padding:0 28px 60px;
     display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center;
   }
-  @media (max-width:820px){ .hero-inner{grid-template-columns:1fr;} }
+  @media (max-width:820px){ .hero-inner{grid-template-columns:1fr;} #hero3d{display:none;} }
   .eyebrow{
     font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.14em;
     color:var(--gold-light);text-transform:uppercase;margin-bottom:18px;
@@ -121,7 +126,7 @@
   }
   .hero-portrait img{width:100%;height:100%;object-fit:cover;border-radius:4px;border:1px solid rgba(231,202,132,0.35);}
 
-  .signal{height:64px;width:100%;display:block;}
+  .signal{height:64px;width:100%;display:block;position:relative;z-index:1;}
 
   section{padding:76px 0;scroll-margin-top:76px;}
   .section-head{margin-bottom:44px;max-width:60ch;}
@@ -144,7 +149,13 @@
   .fact-list li{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid rgba(36,21,33,0.1);color:var(--ink-soft);}
   .fact-list li span:first-child{color:var(--wine-dark);font-weight:500;}
 
-  .skills{background:var(--cream-2);}
+  .skills{background:var(--cream-2);position:relative;overflow:hidden;}
+  #skills3d{
+    position:absolute;top:0;right:0;width:340px;height:340px;
+    opacity:0.4;pointer-events:none;z-index:0;
+  }
+  @media (max-width:900px){ #skills3d{display:none;} }
+  .skills .wrap{position:relative;z-index:1;}
   .dial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
   .dial{background:var(--cream);border:1px solid rgba(36,21,33,0.08);border-radius:6px;padding:22px 22px 20px;position:relative;}
   .dial::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--gold), var(--rose));border-radius:6px 6px 0 0;}
@@ -210,7 +221,12 @@
   .achieve-body p{color:var(--ink-soft);font-size:0.88rem;margin-bottom:6px;}
   .achieve-year{font-family:var(--font-mono);font-size:0.72rem;color:var(--rose);letter-spacing:0.04em;}
 
-  .contact{background:linear-gradient(160deg, var(--wine) 0%, var(--wine-dark) 100%);color:var(--cream);text-align:center;}
+  .contact{background:linear-gradient(160deg, var(--wine) 0%, var(--wine-dark) 100%);color:var(--cream);text-align:center;position:relative;overflow:hidden;}
+  #contact3d{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    opacity:0.35;pointer-events:none;z-index:0;
+  }
+  .contact .wrap{position:relative;z-index:1;}
   .contact h2{color:var(--cream);}
   .contact p.lede{color:rgba(245,237,226,0.8);max-width:52ch;margin:16px auto 32px;}
   .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
@@ -292,11 +308,12 @@
 </header>
 
 <section class="hero">
+  <canvas id="hero3d" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <div>
-      <span class="eyebrow">A great speaker &amp; in technology — Data and Business Analytics</span>
+      <span class="eyebrow">Open to graduate opportunities — Data &amp; Business Analytics</span>
       <h1 id="heroHeadline"><span class="w">Turning</span> <span class="w em">numbers</span> <span class="w">into</span> <span class="w em">narratives.</span></h1>
-      <p class="lede">I'm a BSc Information Technology student building a career at the intersection of data analytics and clear communication — trained in SQL, Python and business intelligence, and sharpened by two years behind a campus radio mic.</p>
+      <p class="lede">I turn raw data into decisions people can actually act on — grounded in SQL, Python, and business intelligence, and sharpened by two years of live, on-air communication. I am your bridge between technology and business.</p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-gold">See my work</a>
         <a href="Kgaugelo_Mabote_CV.pdf" class="btn btn-outline">Download CV</a>
@@ -339,7 +356,7 @@
       <div class="reveal">
         <span class="kicker">About</span>
         <h2>Analyst by training, storyteller by instinct.</h2>
-        <p class="pull">"Using both soft skills and technical expertise to bridge the gap between data and decision-making."</p>
+        <p class="pull">"I bridge the gap between data and decision-making — the technical skill to find the answer, and the communication skill to make people act on it."</p>
         <div class="about-photo">
           <img src="about.jpg" alt="Kgaugelo celebrating at NWU Vaal, River FM shirt">
           <span class="about-photo-cap">River FM — NWU Vaal</span>
@@ -360,6 +377,7 @@
 </section>
 
 <section class="skills" id="skills">
+  <canvas id="skills3d" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="kicker">Capabilities</span>
@@ -542,10 +560,11 @@
 </section>
 
 <section class="contact" id="contact">
+  <canvas id="contact3d" aria-hidden="true"></canvas>
   <div class="wrap">
     <span class="kicker" style="color:var(--gold-light);">Get in touch</span>
-    <h2 class="reveal">Let's talk data and business.</h2>
-    <p class="lede reveal">Open to opportunities in Data Analytics or Business Analysis. Reach out — I reply personally.</p>
+    <h2 class="reveal">Ready to put this to work.</h2>
+    <p class="lede reveal">I'm actively seeking graduate opportunities in Data Analytics or Business Analysis — and I respond fast. Let's talk.</p>
     <div class="contact-links reveal">
       <a href="mailto:Kgaugelo.ditsala@gmail.com" class="btn btn-gold">Email me</a>
       <a href="https://www.linkedin.com/in/kgaugelopertunia" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
@@ -576,6 +595,107 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal, .dial').forEach(el => io.observe(el));
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  (function () {
+    if (typeof THREE === 'undefined') return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function makeScene(canvasId, getSize) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return null;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+      camera.position.z = 7;
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      function resize() {
+        const { w, h } = getSize();
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      return { scene, camera, renderer };
+    }
+
+    function wire(radius, detail, color, opacity) {
+      const geo = new THREE.IcosahedronGeometry(radius, detail);
+      const edges = new THREE.EdgesGeometry(geo);
+      const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity });
+      return new THREE.LineSegments(edges, mat);
+    }
+
+    /* ---- Hero: dual wireframe, cursor-reactive ---- */
+    const heroHero = document.querySelector('.hero');
+    if (heroHero) {
+      const s = makeScene('hero3d', () => ({ w: heroHero.clientWidth * 0.6, h: heroHero.clientHeight }));
+      if (s) {
+        const w1 = wire(2.6, 1, 0xE7CA84, 0.55);
+        const w2 = wire(1.5, 0, 0xB4536B, 0.45);
+        s.scene.add(w1, w2);
+
+        let targetX = 0, targetY = 0;
+        heroHero.addEventListener('mousemove', (e) => {
+          const rect = heroHero.getBoundingClientRect();
+          targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 1.2;
+          targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 1.2;
+        });
+
+        (function animate() {
+          requestAnimationFrame(animate);
+          if (!reduceMotion) {
+            w1.rotation.x += 0.0018 + targetY * 0.01;
+            w1.rotation.y += 0.0026 + targetX * 0.01;
+            w2.rotation.x -= 0.0012;
+            w2.rotation.y -= 0.0020;
+          }
+          s.renderer.render(s.scene, s.camera);
+        })();
+      }
+    }
+
+    /* ---- Skills: torus knot, distinct silhouette for a light background ---- */
+    const s2 = makeScene('skills3d', () => ({ w: 340, h: 340 }));
+    if (s2) {
+      const geo = new THREE.TorusKnotGeometry(1.3, 0.35, 100, 12);
+      const edges = new THREE.EdgesGeometry(geo);
+      const mat = new THREE.LineBasicMaterial({ color: 0x43173A, transparent: true, opacity: 0.5 });
+      const knot = new THREE.LineSegments(edges, mat);
+      s2.scene.add(knot);
+      (function animate() {
+        requestAnimationFrame(animate);
+        if (!reduceMotion) { knot.rotation.x += 0.004; knot.rotation.y += 0.006; }
+        s2.renderer.render(s2.scene, s2.camera);
+      })();
+    }
+
+    /* ---- Contact: bookend wireframe, echoes the hero ---- */
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const s3 = makeScene('contact3d', () => ({ w: contactSection.clientWidth, h: contactSection.clientHeight }));
+      if (s3) {
+        s3.camera.position.z = 9;
+        const w3 = wire(3.2, 1, 0xE7CA84, 0.4);
+        const w4 = wire(1.9, 0, 0xB4536B, 0.35);
+        w3.position.x = -3.5;
+        w4.position.x = 3.5;
+        s3.scene.add(w3, w4);
+        (function animate() {
+          requestAnimationFrame(animate);
+          if (!reduceMotion) {
+            w3.rotation.x += 0.0016; w3.rotation.y += 0.0022;
+            w4.rotation.x -= 0.0014; w4.rotation.y -= 0.0018;
+          }
+          s3.renderer.render(s3.scene, s3.camera);
+        })();
+      }
+    }
+  })();
 </script>
 
 </body>
